@@ -3,9 +3,9 @@
 	"id": "kami-mod",
 	"version": "${version}",
 	"name": "Kami Mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Kami Mod for the cobblemon server",
 	"authors": [
-		"Me!"
+		"mo-chr"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"com.kamikode.kamimod.KamiMod"
+		],
+		"client": [
+			"com.kamikode.kamimod.KamiModClient"
 		],
 		"fabric-datagen": [
 			"com.kamikode.kamimod.KamiModDataGenerator"
