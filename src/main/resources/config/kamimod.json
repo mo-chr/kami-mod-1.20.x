@@ -1,0 +1,24 @@
+{
+  "vote_links": [
+    {
+      "link": "https://example.com/vote1",
+      "voteTextColor": "RED",
+      "linkColor": "BLUE",
+      "bold": true,
+      "italic": false,
+      "underlined": true,
+      "strikethrough": false,
+      "obfuscated": false
+    },
+    {
+      "link": "https://example.com/vote2",
+      "voteTextColor": "RED",
+      "linkColor": "BLUE",
+      "bold": true,
+      "italic": false,
+      "underlined": true,
+      "strikethrough": false,
+      "obfuscated": false
+    }
+  ]
+}
