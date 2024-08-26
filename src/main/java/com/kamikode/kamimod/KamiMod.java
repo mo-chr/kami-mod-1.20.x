@@ -29,7 +29,7 @@ public class KamiMod implements ModInitializer {
 					CommandManager.literal("vote")
 							.executes(context -> sendVoteLinks(context.getSource()))
 							.then(CommandManager.literal("reload")
-//									.requires(source -> source.hasPermissionLevel(2)) // Adjusted permission check
+									.requires(source -> source.hasPermissionLevel(2)) // Adjusted permission check
 									.executes(context -> reloadConfig(context.getSource())))
 			);
 		});
@@ -99,10 +99,10 @@ public class KamiMod implements ModInitializer {
 
 
 	private int reloadConfig(ServerCommandSource source) {
-//		if (!source.hasPermissionLevel(2)) {
-//			source.sendError(Text.literal("You do not have permission to reload the configuration!").formatted(Formatting.RED));
-//			return 0;
-//		}
+		if (!source.hasPermissionLevel(2)) {
+			source.sendError(Text.literal("You do not have permission to reload the configuration!").formatted(Formatting.RED));
+			return 0;
+		}
 		try {
 			ConfigManager.reloadConfig();
 			source.sendFeedback(() -> Text.literal("Configuration reloaded successfully!").formatted(Formatting.GREEN), false);
