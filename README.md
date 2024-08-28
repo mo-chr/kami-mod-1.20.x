@@ -1,6 +1,6 @@
 # kami-vote-mod-1.20.x
 
-Welcome to the `kami-vote-mod-1.20.x` plugin! This plugin is designed to display vote links for your Fabric website in Minecraft. It offers a range of customization options, and we're excited to add more based on your feedback.
+Welcome to the `kami-vote-mod-1.20.x` plugin! This plugin is designed to display vote links in your Minecraft Fabric server. It offers a range of customization options, and we're excited to add more based on your feedback.
 ![image](https://github.com/user-attachments/assets/fb386cfe-0026-455c-871d-d371aba76e25)
 
 
