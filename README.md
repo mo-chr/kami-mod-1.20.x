@@ -1,5 +1,6 @@
 
-![Vote](https://github.com/user-attachments/assets/49ca4858-6567-4eb6-ae1e-c1b7a73d362a)
+<img src="https://github.com/user-attachments/assets/49ca4858-6567-4eb6-ae1e-c1b7a73d362a" alt="Vote" width="300" height="300">
+
 
 # kami-vote-mod-1.20.x
 
