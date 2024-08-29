@@ -1,5 +1,4 @@
 package com.kamikode.kamimod;
-
 import com.google.gson.*;
 
 import java.io.File;
@@ -9,25 +8,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class ConfigManager {
-    private static final Logger LOGGER = LogManager.getLogger(ConfigManager.class);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final File CONFIG_FILE = new File("config/kamimod.json");
     static JsonObject config;
 
     public static void loadConfig() {
         if (!CONFIG_FILE.exists()) {
-            LOGGER.info("Config file not found, creating default config.");
+            Helpers.logInfo("Config file not found, creating default config.");
             createDefaultConfig();
         } else {
-            LOGGER.info("Loading config file: {}", CONFIG_FILE.getPath());
+            Helpers.logInfo("Created default config file: {}");
             try (FileReader reader = new FileReader(CONFIG_FILE)) {
                 config = GSON.fromJson(reader, JsonObject.class);
             } catch (IOException e) {
-                LOGGER.error("Error reading config file:", e);
+                Helpers.logError("Error reading config file:", e);
             }
         }
     }
@@ -43,7 +38,7 @@ public class ConfigManager {
         configSettings.addProperty("strikethrough", false);
         configSettings.addProperty("obfuscated", false);
         config.add("config", configSettings);
-
+        config.addProperty("vote_title", "Kami Vote");
         config.addProperty("on_vote_text", "Thank you for voting! Here's the vote links below");
 
         JsonArray voteLinks = new JsonArray();
@@ -59,29 +54,33 @@ public class ConfigManager {
 
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             GSON.toJson(config, writer);
-            LOGGER.info("Created default config file: {}", CONFIG_FILE.getPath());
+            Helpers.logInfo("Created default config file: {}");
         } catch (IOException e) {
-            LOGGER.error("Error creating default config file:", e);
+            Helpers.logError("Error creating default config file:", e);
         }
     }
 
     public static void reloadConfig() {
-        LOGGER.info("Reloading config file: {}", CONFIG_FILE.getPath());
+        Helpers.logInfo("Reloading config file: {}");
         if (!CONFIG_FILE.exists()) {
-            LOGGER.info("Config file not found, creating default config.");
+            Helpers.logInfo("Config file not found, creating default config.");
             createDefaultConfig();
         } else {
             try (FileReader reader = new FileReader(CONFIG_FILE)) {
                 config = GSON.fromJson(reader, JsonObject.class);
-                LOGGER.info("Config file reloaded successfully.");
+                Helpers.logInfo("Config file reloaded successfully.");
             } catch (IOException e) {
-                LOGGER.error("Error reloading config file:", e);
+                Helpers.logError("Error reloading config file:", e);
             }
         }
     }
 
     public static String getOnVoteText() {
         return config != null && config.has("on_vote_text") ? config.get("on_vote_text").getAsString() : "Thank you for voting! Here's the vote links below";
+    }
+
+    public static String getVoteTitle(){
+        return config != null && config.has("vote_title") ? config.get("vote_title").getAsString() : "Kami Vote";
     }
 
     public static List<ConfigManager.VoteLinkConfig> getVoteLinkConfigs() {
@@ -93,7 +92,6 @@ public class ConfigManager {
                     JsonObject linkObject = element.getAsJsonObject();
                     VoteLinkConfig voteLinkConfig = new VoteLinkConfig();
                     voteLinkConfig.link = linkObject.get("link").getAsString();
-                    // Apply default style values
                     JsonObject configObject = config.getAsJsonObject("config");
                     voteLinkConfig.voteTextColor = configObject.get("voteTextColor").getAsString();
                     voteLinkConfig.linkColor = configObject.get("linkColor").getAsString();
@@ -104,7 +102,7 @@ public class ConfigManager {
                     voteLinkConfig.obfuscated = configObject.get("obfuscated").getAsBoolean();
                     configs.add(voteLinkConfig);
                 } else {
-                    LOGGER.warn("Invalid element in vote_links array: {}", element.toString());
+                    Helpers.logWarn("Invalid element in vote_links array: {}", element.toString());
                 }
             }
         }
