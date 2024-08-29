@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "kami-mod",
+	"id": "kami-vote",
 	"version": "${version}",
-	"name": "Kami Mod",
-	"description": "Kami Mod for the cobblemon server",
+	"name": "Kami Vote",
+	"description": "Kami Vote, Easily add a /vote command to your server that displays your chosen vote links",
 	"authors": [
 		"mo-chr"
 	],
