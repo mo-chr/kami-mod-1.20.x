@@ -37,7 +37,7 @@ public class KamiMod implements ModInitializer {
 					CommandManager.literal("vote")
 							.executes(context -> sendVoteLinks(context.getSource()))
 							.then(CommandManager.literal("reload")
-									.requires(source -> source.hasPermissionLevel(2)) // Adjusted permission check
+									.requires(source -> source.hasPermissionLevel(3))
 									.executes(context -> reloadConfig(context.getSource())))
 			);
 		});
